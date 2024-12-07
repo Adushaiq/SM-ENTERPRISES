@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import OurHistoryImage from '../assets/OurHistory.png'; // Replace with the actual image path
+import OurHistoryImage from '../assets/OurHistory.png';
+import Container from '@mui/material/Container'; // Replace with the actual image path
 
 const OurHistory = () => {
   return (
-    <Box
+    <Container maxWidth="xl"
       sx={{
         position: 'relative',
         width: '100%',
@@ -75,7 +76,7 @@ const OurHistory = () => {
           We have been committed to excellence and innovation for over 20 years, constantly evolving to meet the needs of our customers and the market.
         </Typography>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

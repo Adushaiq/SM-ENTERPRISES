@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import HeroImage from '../assets/HeroImage.png';
@@ -30,7 +31,7 @@ const Hero = () => {
   
 
   return (
-    <Box
+    <Container maxWidth="xl"
       sx={{
         flexGrow: 1,
         backgroundColor: '#ffffff',
@@ -200,7 +201,7 @@ const Hero = () => {
           />
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 };
 

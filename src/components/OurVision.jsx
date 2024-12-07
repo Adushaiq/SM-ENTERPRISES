@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import OurVisionImage from '../assets/OurVision.png'; // Replace with the actual image path
+import OurVisionImage from '../assets/OurVision.png';
+import Container from '@mui/material/Container'; // Replace with the actual image path
 
 const OurVision = () => {
   return (
-    <Box
+    <Container maxWidth="xl"
       sx={{
         position: 'relative',
         width: '100%',
@@ -76,7 +77,7 @@ const OurVision = () => {
           Offering diverse brands with unbeatable quality, service, and rates. Striving to lead in engineered solutions for construction with a focus on safety and value.
         </Typography>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
