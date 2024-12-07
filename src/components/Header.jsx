@@ -14,6 +14,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import CompanyLogo from '../assets/CompanyLogo.png';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 const pages = ['Home', 'Catalog', 'Our Customers', 'About Us', 'Contact Us'];
 
@@ -80,6 +81,8 @@ function Header() {
                     fontWeight: 'normal',
                     textTransform: 'capitalize',
                   }}
+                  component={Link}  // Use Link for navigation
+                  to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}  // Conditional route path
                 >
                   {page}
                 </Button>
@@ -107,7 +110,12 @@ function Header() {
               >
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseMenu}>
-                    {page}
+                    <Link
+                      to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      {page}
+                    </Link>
                   </MenuItem>
                 ))}
                 {/* Social Icons Below */}
