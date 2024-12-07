@@ -13,6 +13,10 @@ const productSchema = new mongoose.Schema(
     secondaryImage: {
       type: String, // Optional
     },
+    brand: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields automatically

@@ -4,10 +4,10 @@ const cloudinary = require("cloudinary").v2;
 // Create a new product
 exports.createProduct = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, brand } = req.body;
 
     // Validate required fields
-    if (!name || !req.files || !req.files.primaryImage) {
+    if (!name || !brand || !req.files || !req.files.primaryImage) {
       return res.status(400).json({ success: false, message: "Name and primary image are required." });
     }
 
@@ -26,6 +26,7 @@ exports.createProduct = async (req, res) => {
 
     // Create product in the database
     const product = await Product.create({
+      brand,
       name,
       primaryImage: primaryImageResult.secure_url,
       secondaryImage: secondaryImageResult?.secure_url || null,
