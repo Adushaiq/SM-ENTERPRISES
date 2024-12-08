@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Checkbox, Button, Typography, Grid, Box } from '@mui/material';
+import { TextField, Checkbox, Button, Typography, Grid, Box, Snackbar , Alert} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -15,11 +15,68 @@ const Form = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [newsletter, setNewsletter] = useState(false);
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success', // 'success' | 'error'
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({ name, email, message, newsletter });
+    const handleSnackbarClose = () => {
+        setSnackbar((prev) => ({ ...prev, open: false }));
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Validate form fields
+        if (!name || !email || !message) {
+            setSnackbar({
+                open: true,
+                message: 'All fields are required!',
+                severity: 'error',
+            });
+            return;
+        }
+
+        try {
+            // Send API request
+            const response = await fetch("http://localhost:4000/api/v1/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, message }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                setSnackbar({
+                    open: true,
+                    message: 'Email sent successfully!',
+                    severity: 'success',
+                });
+                setName('');
+                setEmail('');
+                setMessage('');
+                setNewsletter(false);
+            } else {
+                setSnackbar({
+                    open: true,
+                    message: `Error: ${data.message}`,
+                    severity: 'error',
+                });
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+            setSnackbar({
+                open: true,
+                message: 'Failed to send email!',
+                severity: 'error',
+            });
+        }
+    };
+
+
 
     return (
         <Box
@@ -33,7 +90,7 @@ const Form = () => {
         >
             <Grid
                 container
-                
+
                 sx={{
                     alignItems: 'stretch',
                     width: '100%',
@@ -45,7 +102,11 @@ const Form = () => {
                     item
                     xs={12}
                     md={6}
-                    sx={{ display: 'flex', flexDirection: 'column', padding: { xs: '10px', md: '20px' } }}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        padding: { xs: '10px', md: '20px' },
+                    }}
                 >
                     <Box
                         component="form"
@@ -60,7 +121,14 @@ const Form = () => {
                             height: '100%',
                         }}
                     >
-                        <Typography variant="h5" sx={{ marginBottom: '16px', color: '#fff', fontSize: { xs: '1.5rem', md: '2rem' } }}>
+                        <Typography
+                            variant="h5"
+                            sx={{
+                                marginBottom: '16px',
+                                color: '#fff',
+                                fontSize: { xs: '1.5rem', md: '2rem' },
+                            }}
+                        >
                             Get in Touch
                         </Typography>
                         <TextField
@@ -114,15 +182,14 @@ const Form = () => {
                                 '& .MuiInput-underline:after': { borderBottomColor: '#007bff' },
                             }}
                         />
-                        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                            <Checkbox
-                                checked={newsletter}
-                                onChange={(e) => setNewsletter(e.target.checked)}
-                                sx={{ color: '#fff' }}
-                            />
-                            <Typography variant="body2" sx={{ color: '#fff' }}>
-                                I would like to receive the newsletter
-                            </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: '10px',
+                            }}
+                        >
+                           
                         </Box>
                         <Button
                             type="submit"
@@ -140,6 +207,22 @@ const Form = () => {
                             SUBMIT
                         </Button>
                     </Box>
+
+                    {/* Snackbar for success or error messages */}
+                    <Snackbar
+                        open={snackbar.open}
+                        autoHideDuration={4000}
+                        onClose={handleSnackbarClose}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
+                        <Alert
+                            onClose={handleSnackbarClose}
+                            severity={snackbar.severity}
+                            sx={{ width: '100%' }}
+                        >
+                            {snackbar.message}
+                        </Alert>
+                    </Snackbar>
                 </Grid>
 
                 {/* Contact Information Section */}

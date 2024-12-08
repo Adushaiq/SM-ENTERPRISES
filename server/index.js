@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+const nodemailer = require("nodemailer"); // Import Nodemailer
 
 // Import custom configurations
 const database = require("./config/database");
@@ -50,6 +51,41 @@ app.get("/", (req, res) => {
     success: true,
     message: "Server is up and running!",
   });
+});
+
+// Nodemailer setup
+const transporter = nodemailer.createTransport({
+  service: "gmail", // You can use other services like Outlook, Yahoo, etc.
+  auth: {
+    user: process.env.EMAIL_USER, // Your email address
+    pass: process.env.EMAIL_PASS, // Your email password or app-specific password
+  },
+});
+
+// Email-sending route
+app.post("/api/v1/send-email", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ success: false, message: "All fields are required!" });
+  }
+
+  try {
+    const mailOptions = {
+      from: email, // Sender's email address
+      to: "saadsayyed9604@gmail.com", // Recipient's email address
+      subject: `Message from ${name}`,
+      text: message,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ success: true, message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ success: false, message: "Failed to send email!" });
+  }
 });
 
 // Server start

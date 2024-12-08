@@ -82,7 +82,7 @@ function Header() {
                     textTransform: 'capitalize',
                   }}
                   component={Link}  // Use Link for navigation
-                  to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}  // Conditional route path
+                  to={page === 'Home' ? '/' : page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}  // Conditional route path
                 >
                   {page}
                 </Button>
@@ -111,7 +111,7 @@ function Header() {
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseMenu}>
                     <Link
-                      to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}
+                      to={page === 'Home' ? '/' : page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                       {page}
