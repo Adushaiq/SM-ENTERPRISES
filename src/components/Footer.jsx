@@ -1,69 +1,163 @@
-import { Box, Container, Typography, Link, Grid } from '@mui/material';
+import { Box, Container, Typography, Link, Grid } from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import CompanyLogo from "../assets/CompanyLogo.png";
 
 const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '#F7F7F7',
-        color: 'black',
-        py: 4, // Padding on top and bottom
-        mt: 5, // Margin on top to separate from main content
-        boxShadow: '0px -2px 5px rgba(0, 0, 0, 0.1)', // Subtle shadow for a clean effect
+        backgroundColor: "#F7F7F7",
+        py: 4,
+        mt: 5,
+        boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={4} justifyContent="space-between">
-          {/* Left Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
-              About Us
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </Grid>
-
-          {/* Center Section with Links */}
-          <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
-              Quick Links
-            </Typography>
-            <Link href="#" sx={{ color: 'black', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-              Home
-            </Link>
-            <Link href="#" sx={{ color: 'black', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-              Services
-            </Link>
-            <Link href="#" sx={{ color: 'black', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-              Contact
-            </Link>
-          </Grid>
-
-          {/* Right Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
-              Follow Us
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Link href="#" sx={{ color: 'black' }}>
-                <i className="fab fa-facebook-f"></i> {/* You can use any icon library */}
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            flexDirection: { xs: "column", md: "row" }, // Stack vertically for mobile
+          }}
+        >
+          {/* Logo and Social Icons Section */}
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
+            <Box sx={{ mb: 3 }}>
+              <img
+                src={CompanyLogo}
+                alt="SM Enterprises Logo"
+                style={{ width: "200px", marginBottom: "10px" }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: { xs: "center", md: "flex-start" },
+                gap: 2,
+                padding: {xs: 0, md:1}
+              }}
+            >
+              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+                <FacebookIcon />
               </Link>
-              <Link href="#" sx={{ color: 'black' }}>
-                <i className="fab fa-twitter"></i>
+              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+                <InstagramIcon />
               </Link>
-              <Link href="#" sx={{ color: 'black' }}>
-                <i className="fab fa-instagram"></i>
+              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+                <TwitterIcon />
               </Link>
             </Box>
           </Grid>
-        </Grid>
 
-        {/* Footer Bottom */}
-        <Box sx={{ mt: 4, textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ opacity: 0.6 }}>
-            &copy; {new Date().getFullYear()} Your Company Name. All rights reserved.
-          </Typography>
-        </Box>
+          {/* Products and Services Section */}
+          <Grid item xs={12} md={4}>
+            <Grid
+              container
+              spacing={2}
+              sx={{ textAlign: { xs: "center", md: "left" } }}
+            >
+              <Grid item xs={12} md={6}>
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  sx={{ mb: 2, color: "#3342AC" }}
+                >
+                  Products
+                </Typography>
+                {["Sand", "Stone", "Cement", "Soft", "Stone"].map(
+                  (item, index) => (
+                    <Typography
+                      key={index}
+                      variant="body2"
+                      sx={{
+                        mb: 1,
+                        color: "#000",
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                  )
+                )}
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  sx={{ mb: 2, color: "#3342AC" }}
+                >
+                  Services
+                </Typography>
+                {["Measurement", "Service", "Product Advice", "Interior Design"].map(
+                  (item, index) => (
+                    <Typography
+                      key={index}
+                      variant="body2"
+                      sx={{
+                        mb: 1,
+                        color: "#000",
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                  )
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
+
+          {/* Contact Information Section */}
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              sx={{ mb: 2, color: "#3342AC" }}
+            >
+              Contact Information
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1, color: "#000" }}>
+              <Link
+                href="tel:02024452563"
+                sx={{
+                  color: "#000000",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                Tel: 020-24452563
+              </Link>{" "}
+              /{" "}
+              <Link
+                href="tel:02024488374"
+                sx={{
+                  color: "#000000",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                020-24488374
+              </Link>
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1, color: "#000" }}>
+              Address: Shop No 4, Dharmshi Landmark,
+              <br />
+              Opp Vinay High School,
+              <br />
+              Bhawani Peth, Pune 411042
+            </Typography>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

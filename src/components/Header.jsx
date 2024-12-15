@@ -1,45 +1,47 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MenuIcon from '@mui/icons-material/Menu';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import CompanyLogo from '../assets/CompanyLogo.png';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import React, { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import CompanyLogo from "../assets/CompanyLogo.png";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
-const pages = ['Home', 'Catalog', 'Our Customers', 'About Us', 'Contact Us'];
+const pages = ["Home", "Catalog", "Our Customers", "About Us", "Contact Us"];
 
-function Header() {
+function Header({ scrollToContact }) {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleOpenMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleToggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
   };
 
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
+  const handleScrollToContact = () => {
+    if (scrollToContact && typeof scrollToContact === "function") {
+      scrollToContact();
+    }
+    setIsMenuOpen(false); // Close the menu after navigation
   };
 
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: 'white',
-        color: 'black',
-        paddingBottom: '20px',
-        paddingTop: '10px'
+        backgroundColor: "white",
+        color: "black",
+        paddingBottom: "20px",
+        paddingTop: "10px",
       }}
       elevation={0}
     >
@@ -47,28 +49,28 @@ function Header() {
         <Toolbar
           disableGutters
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           {/* Logo */}
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            <img src={CompanyLogo} alt="Logo" style={{ height: '50px' }} />
+            <img src={CompanyLogo} alt="Logo" style={{ height: "50px" }} />
           </Box>
 
           {/* Menu Items */}
           {!isMobile ? (
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
                 gap: 2,
               }}
@@ -77,96 +79,115 @@ function Header() {
                 <Button
                   key={page}
                   sx={{
-                    color: 'black',
-                    fontWeight: 'normal',
-                    textTransform: 'capitalize',
+                    color: "black",
+                    fontWeight: "normal",
+                    textTransform: "capitalize",
                   }}
-                  component={Link}  // Use Link for navigation
-                  to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}  // Conditional route path
+                  onClick={
+                    page === "Contact Us"
+                      ? handleScrollToContact
+                      : undefined
+                  }
+                  component={Link}
+                  to={
+                    page === "Catalog"
+                      ? "/catalogue"
+                      : page !== "Contact Us"
+                      ? `/${page.toLowerCase().replace(" ", "")}`
+                      : "#"
+                  }
                 >
                   {page}
                 </Button>
               ))}
             </Box>
           ) : (
-            <Box>
+            <>
               <IconButton
                 size="large"
                 edge="end"
                 color="inherit"
-                onClick={handleOpenMenu}
+                onClick={handleToggleMenu}
               >
                 <MenuIcon />
               </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleCloseMenu}
-                PaperProps={{
-                  style: {
-                    width: '200px',
-                  },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseMenu}>
-                    <Link
-                      to={page === 'Catalog' ? '/catalogue' : `/${page.toLowerCase().replace(' ', '')}`}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      {page}
-                    </Link>
-                  </MenuItem>
-                ))}
-                {/* Social Icons Below */}
+              {isMenuOpen && (
                 <Box
                   sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    marginTop: 2, // Add spacing between menu items and icons
+                    position: "fixed",
+                    top: 0,
+                    right: 0,
+                    width: "70vw",
+                    height: "100vh",
+                    backgroundColor: "white",
+                    zIndex: 1300,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    padding: "16px",
                   }}
                 >
+                  {/* Close Icon */}
                   <IconButton
-                    component="a"
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    size="large"
+                    edge="end"
                     color="inherit"
+                    onClick={handleToggleMenu}
+                    sx={{ alignSelf: "flex-end" }}
                   >
-                    <FacebookIcon />
+                    <CloseIcon />
                   </IconButton>
-                  <IconButton
-                    component="a"
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    color="inherit"
+
+                  {/* Menu Items */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 2,
+                      marginTop: 2,
+                      width: "100%",
+                      textAlign: "center"
+                    }}
                   >
-                    <TwitterIcon />
-                  </IconButton>
-                  <IconButton
-                    component="a"
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    color="inherit"
-                  >
-                    <InstagramIcon />
-                  </IconButton>
+                    {pages.map((page) => (
+                      <Button
+                        key={page}
+                        onClick={
+                          page === "Contact Us"
+                            ? handleScrollToContact
+                            : handleToggleMenu
+                        }
+                        component={Link}
+                        to={
+                          page === "Catalog"
+                            ? "/catalogue"
+                            : page !== "Contact Us"
+                            ? `/${page.toLowerCase().replace(" ", "")}`
+                            : "#"
+                        }
+                        sx={{
+                          color: "black",
+                          textTransform: "capitalize",
+                          fontWeight: "normal",
+                          textAlign: "centre",
+                        }}
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                  </Box>
                 </Box>
-              </Menu>
-            </Box>
+              )}
+            </>
           )}
 
           {/* Social Icons for Desktop */}
           {!isMobile && (
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
                 gap: 2,
               }}
             >
@@ -199,6 +220,128 @@ function Header() {
               </IconButton>
             </Box>
           )}
+
+          {/* Social Icons for Mobile */}
+          {isMenuOpen && (
+            <Box
+              sx={{
+                position: "fixed",
+                top: 0,
+                right: 0,
+                width: "70vw",
+                height: "100vh",
+                backgroundColor: "white",
+                zIndex: 1300,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between", // Ensure content and socials are spaced properly
+                alignItems: "flex-start",
+                padding: "16px",
+                paddingTop: "0px"
+              }}
+            >
+              <Box 
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                  marginTop: 2,
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                {/* Close Icon */}
+                <IconButton
+                  size="large"
+                  edge="end"
+                  color="inherit"
+                  onClick={handleToggleMenu}
+                  sx={{ alignSelf: "flex-end" }}
+                >
+                  <CloseIcon />
+                </IconButton>
+
+                {/* Menu Items */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                    marginTop: 2,
+                    width: "100%",
+                    textAlign: "center",
+                  }}
+                >
+                  {pages.map((page) => (
+                    <Button
+                      key={page}
+                      onClick={
+                        page === "Contact Us"
+                          ? handleScrollToContact
+                          : handleToggleMenu
+                      }
+                      component={Link}
+                      to={
+                        page === "Catalog"
+                          ? "/catalogue"
+                          : page !== "Contact Us"
+                          ? `/${page.toLowerCase().replace(" ", "")}`
+                          : "#"
+                      }
+                      sx={{
+                        color: "black",
+                        textTransform: "capitalize",
+                        fontWeight: "normal",
+                      }}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+                </Box>
+                
+              </Box>
+
+              {/* Social Icons */}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center", // Center align the icons
+                  gap: 2, // Add spacing between the icons
+                  width: "100%",
+                  paddingBottom: "16px", // Add some padding at the bottom
+                }}
+              >
+                <IconButton
+                  component="a"
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  color="inherit"
+                >
+                  <FacebookIcon />
+                </IconButton>
+                <IconButton
+                  component="a"
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  color="inherit"
+                >
+                  <TwitterIcon />
+                </IconButton>
+                <IconButton
+                  component="a"
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  color="inherit"
+                >
+                  <InstagramIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          )}
+
         </Toolbar>
       </Container>
     </AppBar>

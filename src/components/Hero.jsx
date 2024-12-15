@@ -37,7 +37,7 @@ const Hero = () => {
         backgroundColor: '#ffffff',
         height: 'auto',
         padding: 4,
-        paddingTop: 0,
+        paddingTop: { xs: 4, md: 0 },
         paddingRight: { xs: 4, md: 0 },
       }}
     >
