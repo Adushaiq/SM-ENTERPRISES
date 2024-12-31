@@ -28,10 +28,10 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1, ease: 'easeOut' } },
   };
-  
 
   return (
-    <Container maxWidth="xl"
+    <Container
+      maxWidth="xl"
       sx={{
         flexGrow: 1,
         backgroundColor: '#ffffff',
@@ -90,11 +90,18 @@ const Hero = () => {
             </Typography>
           </motion.div>
 
-          <motion.div variants={buttonVariant} initial="hidden" animate="visible">
+          {/* CTA Button with scaling effect */}
+          <motion.div
+            variants={buttonVariant}
+            initial="hidden"
+            animate="visible"
+            whileHover={{ scale: 1.05 }} // Scale up the button on hover
+            whileTap={{ scale: 0.95 }} // Slight shrink effect on click
+          >
             <Button
               variant="contained"
               sx={{
-                mb: 4,
+                mb: 0,
                 backgroundColor: '#3342AC',
                 color: 'white',
                 width: '200px',
@@ -115,8 +122,7 @@ const Hero = () => {
                 display: 'flex',
                 justifyContent: { xs: 'center', md: 'flex-start' },
                 gap: 5,
-                mt: 2,
-                // flexWrap: 'wrap',
+                mt: 6,
               }}
             >
               {/* Products */}
@@ -124,7 +130,7 @@ const Hero = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: {xs:1, md:2},
+                  gap: { xs: 1, md: 2 },
                 }}
               >
                 <Typography
@@ -150,7 +156,7 @@ const Hero = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  gap: {xs:1, md:2},
+                  gap: { xs: 1, md: 2 },
                 }}
               >
                 <Typography
@@ -163,10 +169,10 @@ const Hero = () => {
                   700+
                 </Typography>
                 <Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light',fontSize: { xs: '0.75rem', md: '1rem' }}}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     TRUSTED
                   </Typography>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light',fontSize: { xs: '0.75rem', md: '1rem' } }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     CLIENTS
                   </Typography>
                 </Box>

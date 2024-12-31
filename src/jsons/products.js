@@ -187,6 +187,61 @@ export const products = [
     "description": "Premium Handles - 150mm, 175mm, 200mm",
     "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735200696/FLORA_PL_12_j0p2kt.jpg",
     "brand": "Flora"
-  }
-
+  },
+  {
+    "id": 34, 
+    "name": "KTRH 006",
+    "description": "Door Handle",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735297620/IMG_3385_f0hntw.jpg",
+    "brand": "Kent"
+  },
+  {
+    "id": 35, 
+    "name": "KTRH 002",
+    "description": "Door Handle",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735297619/IMG_3382_hhwpkq.jpg",
+    "brand": "Kent"
+  },
+  {
+    "id": 36, 
+    "name": "KTRH 004",
+    "description": "Door Handle",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735297619/IMG_3383_jp3f80.jpg",
+    "brand": "Kent"
+  },
+  {
+    "id": 37, 
+    "name": "KTNL 06",
+    "description": "SS/ANB Tribolt Night Latch",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735301984/Screenshot_2024-12-27_174918_dsvfvy.png",
+    "brand": "Kent"
+  },
+  {
+    "id": 38, 
+    "name": "KTCL 06",
+    "description": "ET Black Door Handle",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735302248/Screenshot_2024-12-27_175131_ykku4k.png",
+    "brand": "Kent"
+  },
+  {
+    "id": 39, 
+    "name": "Brass Cylinders",
+    "description": "One Side Key One Side Knob",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735303497/Group_1_rewru6.png",
+    "brand": "Kent"
+  },
+  {
+    "id": 40, 
+    "name": "Cylindrical Locks",
+    "description": "Black Matt 5791 ET CK",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735303784/Group_2_1_fyyyup.png",
+    "brand": "Kent"
+  },
+  {
+    "id": 41, 
+    "name": "ODC 100",
+    "description": "60kg",
+    "image": "https://res.cloudinary.com/dx94piejq/image/upload/v1735301727/IMG_3388_ssytlf.jpg",
+    "brand": "Kent"
+  },
 ]

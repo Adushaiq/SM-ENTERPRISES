@@ -74,6 +74,10 @@ const OurHistory = () => {
           opacity: inView ? 1 : 0,
           transform: inView ? 'scale(1)' : 'scale(0.9)', // Zoom-in effect
           transition: 'opacity 0.6s ease, transform 0.6s ease',
+          '&:hover': {
+            transform: 'scale(1.05)', // Zoom-in effect on hover
+            transition: 'transform 0.3s ease', // Smooth transition
+          },
         }}
       >
         <img
@@ -112,6 +116,11 @@ const OurHistory = () => {
             ? 'translateX(-30px)' // Start off screen to the left on desktop
             : 'translateY(30px)', // Start from below on mobile
           transition: 'opacity 0.6s ease, transform 0.6s ease',
+          '&:hover': {
+            transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
+            transition: 'transform 0.3s ease',
+            boxShadow: 6, // Add shadow on hover
+          },
         }}
       >
         <Typography
@@ -119,7 +128,11 @@ const OurHistory = () => {
           sx={{
             fontWeight: 'bold',
             mb: 2,
-            fontSize: { xs: '1.5rem', md: '2.8rem' },
+            fontSize: { xs: '1.5rem', md: '2.5rem' },
+            '&:hover': {
+              color: '#1976d2', // Change color on hover
+              transition: 'color 0.3s ease',
+            },
           }}
         >
           Our History
@@ -128,9 +141,13 @@ const OurHistory = () => {
           variant="body1"
           sx={{
             fontSize: { xs: '1rem', md: '1.2rem' },
+            '&:hover': {
+              color: '#1976d2', // Change color on hover
+              transition: 'color 0.3s ease',
+            },
           }}
         >
-          S M Enterprises, co-founders of KENT, has provided quality construction materials and hardware since 1998, serving businesses and institutions. 
+          S M Enterprises, co-founders of KENT, has provided quality construction materials and hardware since 1998, serving businesses and institutions.
         </Typography>
       </Box>
     </Container>

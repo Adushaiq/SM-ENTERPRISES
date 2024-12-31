@@ -25,7 +25,7 @@ const OurCustomers = () => {
         animate={{ x: scrollSpeed }} // Adjusted speed for mobile and desktop
         transition={{
           repeat: Infinity,
-          duration: 30, // Keep duration same, but speed is controlled by `x`
+          duration: 60, // Keep duration same, but speed is controlled by `x`
           ease: "linear",
         }}
         sx={{

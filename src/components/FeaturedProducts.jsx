@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
+import WaterProofing from "../assets/Waterproofing.png"
+import TileAdhesive from "../assets/Tileadhesive.png"
+import AntiRust from "../assets/Antirust.png"
+import Kitchen from "../assets/Kitchen.png"
 
 const featuredProducts = [
   {
     title: "Waterproofing Chemicals",
-    description: "Ante mus blandit sapien sociosqu per consequat ad.",
-    image: "https://via.placeholder.com/400x600",
+    description: "Protects spaces from water damage.",
+    image: WaterProofing,
   },
   {
     title: "Tile Adhesives",
-    description: "Ante mus blandit sapien sociosqu per consequat ad.",
-    image: "https://via.placeholder.com/400x600",
+    description: "Strong and reliable tile bonds.",
+    image: TileAdhesive,
   },
   {
     title: "Anti Rust Paint",
-    description: "Ante mus blandit sapien sociosqu per consequat ad.",
-    image: "https://via.placeholder.com/400x300",
+    description: "Shields metal from rust.",
+    image: AntiRust,
   },
   {
     title: "Kitchen Interior",
-    description: "Ante mus blandit sapien sociosqu per consequat ad.",
-    image: "https://via.placeholder.com/400x300",
+    description: "Stylish and functional kitchens.",
+    image: Kitchen,
   },
 ];
+
+
 
 const FeaturedProducts = () => {
   const [inView, setInView] = useState(false);

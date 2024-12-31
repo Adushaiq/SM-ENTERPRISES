@@ -27,13 +27,6 @@ function Header({ scrollToContact }) {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleScrollToContact = () => {
-    if (scrollToContact && typeof scrollToContact === "function") {
-      scrollToContact();
-    }
-    setIsMenuOpen(false); // Close the menu after navigation
-  };
-
   return (
     <AppBar
       position="static"
@@ -83,19 +76,9 @@ function Header({ scrollToContact }) {
                     fontWeight: "normal",
                     textTransform: "capitalize",
                   }}
-                  onClick={
-                    page === "Contact Us"
-                      ? handleScrollToContact
-                      : undefined
-                  }
+                  onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                   component={Link}
-                  to={
-                    page === "Catalog"
-                      ? "/catalogue"
-                      : page !== "Contact Us"
-                      ? `/${page.toLowerCase().replace(" ", "")}`
-                      : "#"
-                  }
+                  to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                 >
                   {page}
                 </Button>
@@ -152,19 +135,9 @@ function Header({ scrollToContact }) {
                     {pages.map((page) => (
                       <Button
                         key={page}
-                        onClick={
-                          page === "Contact Us"
-                            ? handleScrollToContact
-                            : handleToggleMenu
-                        }
+                        onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                         component={Link}
-                        to={
-                          page === "Catalog"
-                            ? "/catalogue"
-                            : page !== "Contact Us"
-                            ? `/${page.toLowerCase().replace(" ", "")}`
-                            : "#"
-                        }
+                        to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                         sx={{
                           color: "black",
                           textTransform: "capitalize",
@@ -240,7 +213,7 @@ function Header({ scrollToContact }) {
                 paddingTop: "0px"
               }}
             >
-              <Box 
+              <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -275,19 +248,9 @@ function Header({ scrollToContact }) {
                   {pages.map((page) => (
                     <Button
                       key={page}
-                      onClick={
-                        page === "Contact Us"
-                          ? handleScrollToContact
-                          : handleToggleMenu
-                      }
+                      onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                       component={Link}
-                      to={
-                        page === "Catalog"
-                          ? "/catalogue"
-                          : page !== "Contact Us"
-                          ? `/${page.toLowerCase().replace(" ", "")}`
-                          : "#"
-                      }
+                      to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                       sx={{
                         color: "black",
                         textTransform: "capitalize",
@@ -298,7 +261,7 @@ function Header({ scrollToContact }) {
                     </Button>
                   ))}
                 </Box>
-                
+
               </Box>
 
               {/* Social Icons */}

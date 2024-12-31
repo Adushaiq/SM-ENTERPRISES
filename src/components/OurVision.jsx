@@ -74,6 +74,10 @@ const OurVision = () => {
           opacity: inView ? 1 : 0,
           transform: inView ? 'scale(1)' : 'scale(0.9)', // Zoom-in effect
           transition: 'opacity 0.6s ease, transform 0.6s ease',
+          '&:hover': {
+            transform: 'scale(1.05)', // Zoom-in effect on hover
+            transition: 'transform 0.3s ease', // Smooth transition
+          },
         }}
       >
         <img
@@ -113,6 +117,11 @@ const OurVision = () => {
             ? 'translateX(0px)' // Start off screen to the left on desktop
             : 'translateY(0px)', // Start from below on mobile
           transition: 'opacity 0.6s ease, transform 0.6s ease',
+          '&:hover': {
+            transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
+            transition: 'transform 0.3s ease',
+            boxShadow: 6, // Add shadow on hover
+          },
         }}
       >
         <Typography
@@ -120,7 +129,11 @@ const OurVision = () => {
           sx={{
             fontWeight: 'bold',
             mb: 2,
-            fontSize: { xs: '1.5rem', md: '2.8rem' },
+            fontSize: { xs: '1.5rem', md: '2.5rem' },
+            '&:hover': {
+              color: '#1976d2', // Change color on hover
+              transition: 'color 0.3s ease',
+            },
           }}
         >
           Our Vision
@@ -129,6 +142,10 @@ const OurVision = () => {
           variant="body1"
           sx={{
             fontSize: { xs: '1rem', md: '1.2rem' },
+            '&:hover': {
+              color: '#1976d2', // Change color on hover
+              transition: 'color 0.3s ease',
+            },
           }}
         >
           Offering diverse brands with unbeatable quality, service, and rates. Striving to lead in engineered solutions for construction with a focus on safety and value.
