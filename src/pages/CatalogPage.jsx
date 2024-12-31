@@ -55,7 +55,7 @@ const CatalogPage = () => {
     <CssBaseline />
     <div style={globalStyles}>
       <BannerCarousel bannerImages={bannerImages} />
-      <Carousels />
+      <Carousels/>
       <ProductGrid products={products} />
     </div>
     <Footer/>

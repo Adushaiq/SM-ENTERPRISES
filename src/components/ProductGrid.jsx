@@ -16,7 +16,7 @@ import {
 import { motion } from "framer-motion";
 
 const ProductGrid = ({ products }) => {
-  const [visibleProducts, setVisibleProducts] = useState(6); // Initially load 5 products
+  const [visibleProducts, setVisibleProducts] = useState(6); // Initially load 6 products
   const [selectedBrand, setSelectedBrand] = useState(""); // Filter by brand
 
   // Extract unique brand names for the filter dropdown
@@ -28,19 +28,20 @@ const ProductGrid = ({ products }) => {
     : products;
 
   const loadMoreProducts = () => {
-    setVisibleProducts((prev) => prev + 6); // Increment by 5 each time the button is clicked
+    setVisibleProducts((prev) => prev + 6); // Increment by 6 each time the button is clicked
   };
 
   return (
     <Container
       maxWidth="lg"
       sx={{
-        mt: 4,
-        mb: 4,
+        mt: 6,
+        mb: 6,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         textAlign: "center",
+        paddingX: { xs: 2, sm: 4 }, // Responsively adjusting padding
       }}
     >
       {/* Title and Filter Section */}
@@ -51,6 +52,7 @@ const ProductGrid = ({ products }) => {
           alignItems: "center",
           width: "100%",
           mb: 4,
+          flexDirection: { xs: "column", sm: "row" }, // Stack elements on small screens
         }}
       >
         <Typography
@@ -62,48 +64,40 @@ const ProductGrid = ({ products }) => {
           sx={{
             fontWeight: "bold",
             color: "primary.main",
+            marginBottom: { xs: 2, sm: 0 }, // Margin for mobile responsiveness
           }}
         >
           Explore Our Products
         </Typography>
 
         {/* Filter Dropdown */}
-        <FormControl
-            sx={{
-                minWidth: 200,
-            }}
-            >
-            <InputLabel
-                id="brand-filter-label"
-                shrink={selectedBrand !== ""}
-            >
-                Filter by Brand
-            </InputLabel>
-            <Select
-                labelId="brand-filter-label"
-                value={selectedBrand}
-                onChange={(e) => setSelectedBrand(e.target.value)}
-            >
-                <MenuItem value="">
-                <em>All Brands</em>
-                </MenuItem>
-                {uniqueBrands.map((brand) => (
-                <MenuItem key={brand} value={brand}>
-                    {brand}
-                </MenuItem>
-                ))}
-            </Select>
-            </FormControl>
-
+        <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="brand-filter-label" shrink={selectedBrand !== ""}>
+            Filter by Brand
+          </InputLabel>
+          <Select
+            labelId="brand-filter-label"
+            value={selectedBrand}
+            onChange={(e) => setSelectedBrand(e.target.value)}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
+          >
+            <MenuItem value="">
+              <em>All Brands</em>
+            </MenuItem>
+            {uniqueBrands.map((brand) => (
+              <MenuItem key={brand} value={brand}>
+                {brand}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Box>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {filteredProducts.slice(0, visibleProducts).map((product) => (
           <Grid
             item
-            xs={6} // 2 products per row on small screens (xs)
-            sm={6} // 2 products per row on small screens (sm)
-            md={4} // 3 products per row on medium screens (md)
+            xs={12} sm={6} md={4} lg={3} // Responsively adjust grid item sizes
             key={product.id}
             component={motion.div}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -116,31 +110,41 @@ const ProductGrid = ({ products }) => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                boxShadow: 4,
-                transition: "transform 0.3s",
-                "&:hover": { transform: "scale(1.05)" },
+                boxShadow: 6,
+                borderRadius: 2,
+                overflow: "hidden", // To avoid image overflow
+                transition: "transform 0.3s, box-shadow 0.3s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: 8,
+                },
                 cursor: "pointer",
               }}
             >
               <CardMedia
                 component="img"
-                height="180"
+                height="220"
                 image={product.image}
                 alt={product.name}
                 sx={{
-                  objectFit: "cover",
+                  objectFit: "cover", // Ensure image covers the area
+                  borderBottom: "2px solid #f0f0f0", // Slight border between image and content
                 }}
               />
               <CardContent
                 sx={{
                   textAlign: "center",
                   flexGrow: 1,
+                  padding: 2,
+                  backgroundColor: "white",
                 }}
               >
                 <Typography
                   variant="h6"
                   sx={{
                     fontWeight: "bold",
+                    marginBottom: 1,
+                    color: "primary.dark",
                   }}
                 >
                   {product.name}
@@ -148,7 +152,9 @@ const ProductGrid = ({ products }) => {
                 <Typography
                   variant="body2"
                   sx={{
-                    opacity: 0.8,
+                    color: "text.secondary",
+                    opacity: 0.85,
+                    marginBottom: 2,
                   }}
                 >
                   {product.description}
@@ -169,14 +175,15 @@ const ProductGrid = ({ products }) => {
             variant="contained"
             sx={{
               mt: 4,
-              px: 2,
-              py: 1.5,
-              fontSize: "0.7rem",
+              px: 4,
+              py: 2,
+              fontSize: "1rem",
               fontWeight: "bold",
-              backgroundColor: "black", // Set the background color to black
-              color: "white", // Set the text color to white
+              backgroundColor: "black",
+              color: "white",
+              borderRadius: 3,
               "&:hover": {
-                backgroundColor: "gray", // Optional: Change background color on hover
+                backgroundColor: "gray",
               },
             }}
             onClick={loadMoreProducts}

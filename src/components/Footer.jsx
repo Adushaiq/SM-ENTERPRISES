@@ -8,10 +8,10 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#F7F7F7",
-        py: 4,
+        backgroundColor: "#F7F7F7", // Retaining original background color
+        py: 2, // Increased padding for better spacing
         mt: 5,
-        boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0px -2px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Container maxWidth="lg">
@@ -20,6 +20,8 @@ const Footer = () => {
           spacing={4}
           sx={{
             flexDirection: { xs: "column", md: "row" }, // Stack vertically for mobile
+            justifyContent: "space-between", // Space out the sections
+            alignItems: "center", // Center content in mobile view
           }}
         >
           {/* Logo and Social Icons Section */}
@@ -27,13 +29,13 @@ const Footer = () => {
             item
             xs={12}
             md={4}
-            sx={{ textAlign: { xs: "center", md: "left" } }}
+            sx={{ textAlign: { xs: "center", md: "left" }, mb: { xs: 4, md: 0 } }}
           >
             <Box sx={{ mb: 3 }}>
               <img
                 src={CompanyLogo}
                 alt="SM Enterprises Logo"
-                style={{ width: "200px", marginBottom: "10px" }}
+                style={{ width: "220px", marginBottom: "10px", borderRadius: "10px" }} // Rounded corners for logo
               />
             </Box>
             <Box
@@ -41,16 +43,37 @@ const Footer = () => {
                 display: "flex",
                 justifyContent: { xs: "center", md: "flex-start" },
                 gap: 2,
-                padding: {xs: 0, md:1}
+                padding: { xs: 0, md: 1 },
               }}
             >
-              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+              <Link
+                href="#"
+                sx={{
+                  color: "#000000", // Dark color for the icons
+                  fontSize: "26px",
+                  "&:hover": { color: "#3b5998" }, // Hover effect for Facebook icon
+                }}
+              >
                 <FacebookIcon />
               </Link>
-              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+              <Link
+                href="#"
+                sx={{
+                  color: "#000000", // Dark color for the icons
+                  fontSize: "26px",
+                  "&:hover": { color: "#E4405F" }, // Hover effect for Instagram icon
+                }}
+              >
                 <InstagramIcon />
               </Link>
-              <Link href="#" sx={{ color: "#000000", fontSize: "24px" }}>
+              <Link
+                href="#"
+                sx={{
+                  color: "#000000", // Dark color for the icons
+                  fontSize: "26px",
+                  "&:hover": { color: "#1DA1F2" }, // Hover effect for Twitter icon
+                }}
+              >
                 <TwitterIcon />
               </Link>
             </Box>
@@ -61,53 +84,49 @@ const Footer = () => {
             <Grid
               container
               spacing={2}
-              sx={{ textAlign: { xs: "center", md: "left" } }}
+              sx={{ textAlign: { xs: "center", md: "left" }, marginBottom: "2rem" }}
             >
               <Grid item xs={12} md={6}>
                 <Typography
                   variant="h6"
                   fontWeight="bold"
-                  sx={{ mb: 2, color: "#3342AC" }}
+                  sx={{ mb: 2, color: "#3342AC", textTransform: "uppercase" }}
                 >
                   Products
                 </Typography>
-                {["Sand", "Stone", "Cement", "Soft", "Stone"].map(
-                  (item, index) => (
-                    <Typography
-                      key={index}
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        color: "#000",
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                  )
-                )}
+                {["Sand", "Stone", "Cement", "Soft", "Stone"].map((item, index) => (
+                  <Typography
+                    key={index}
+                    variant="body2"
+                    sx={{
+                      mb: 1,
+                      color: "#000", // Dark color for text
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
               </Grid>
               <Grid item xs={12} md={6}>
                 <Typography
                   variant="h6"
                   fontWeight="bold"
-                  sx={{ mb: 2, color: "#3342AC" }}
+                  sx={{ mb: 2, color: "#3342AC", textTransform: "uppercase" }}
                 >
                   Services
                 </Typography>
-                {["Measurement", "Service", "Product Advice", "Interior Design"].map(
-                  (item, index) => (
-                    <Typography
-                      key={index}
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        color: "#000",
-                      }}
-                    >
-                      {item}
-                    </Typography>
-                  )
-                )}
+                {["Measurement", "Service", "Product Advice", "Interior Design"].map((item, index) => (
+                  <Typography
+                    key={index}
+                    variant="body2"
+                    sx={{
+                      mb: 1,
+                      color: "#000", // Dark color for text
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
               </Grid>
             </Grid>
           </Grid>
@@ -117,12 +136,19 @@ const Footer = () => {
             item
             xs={12}
             md={4}
-            sx={{ textAlign: { xs: "center", md: "left" } }}
+            sx={{
+              textAlign: { xs: "center", md: "left" },
+              mb: { xs: 4, md: 0 }, // Added bottom margin for consistency
+            }}
           >
             <Typography
               variant="h6"
               fontWeight="bold"
-              sx={{ mb: 2, color: "#3342AC" }}
+              sx={{
+                mb: 2, // Adjusted margin for heading
+                color: "#3342AC",
+                textTransform: "uppercase",
+              }}
             >
               Contact Information
             </Typography>
@@ -159,6 +185,22 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Container>
+
+      {/* Divider for better visual separation */}
+      <Box
+        sx={{
+          borderTop: "1px solid #D1D1D1",
+          marginTop: "3rem",
+          marginBottom: "1rem",
+        }}
+      />
+
+      {/* Copyright Section */}
+      <Box sx={{ textAlign: "center", color: "#000" }}>
+        <Typography variant="body2" sx={{ mb: 0.5 }}>
+          © {new Date().getFullYear()} SM Enterprises. All rights reserved.
+        </Typography>
+      </Box>
     </Box>
   );
 };

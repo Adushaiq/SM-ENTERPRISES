@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-
 import Homepage from './pages/Homepage';
 import Contactus from './pages/Contactus';
 import OurCustomersPage from './pages/OurCustomersPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/catalogue" element={<CatalogPage />} />
           <Route path="/contactus" element={<Contactus/>} />
           <Route path="/ourcustomers" element={<OurCustomersPage/>} />
+          <Route path="/aboutus" element={<AboutUsPage/>} />
         </Routes>
        
       </div>

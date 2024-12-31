@@ -99,10 +99,8 @@ const OurVision = () => {
           top: { md: '25%' },
           right: { md: '110px' },
           width: { xs: '90%', md: '500px' },
-          backgroundColor: '#FFFFFF',
-          padding: 3,
-          paddingTop: { xs: 0, md: 5 },
-          paddingBottom: { xs: 0, md: 5 },
+          background: 'linear-gradient(135deg, #ffffff 30%, rgba(0, 0, 0, 0.1) 90%)',
+          padding: 4,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -115,7 +113,7 @@ const OurVision = () => {
               : 'translateY(0)' // Fade-in on mobile
             : isDesktop
             ? 'translateX(0px)' // Start off screen to the left on desktop
-            : 'translateY(0px)', // Start from below on mobile
+            : 'translateY(30px)', // Start from below on mobile
           transition: 'opacity 0.6s ease, transform 0.6s ease',
           '&:hover': {
             transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
@@ -130,6 +128,7 @@ const OurVision = () => {
             fontWeight: 'bold',
             mb: 2,
             fontSize: { xs: '1.5rem', md: '2.5rem' },
+            lineHeight: 1.4,
             '&:hover': {
               color: '#1976d2', // Change color on hover
               transition: 'color 0.3s ease',
@@ -142,6 +141,8 @@ const OurVision = () => {
           variant="body1"
           sx={{
             fontSize: { xs: '1rem', md: '1.2rem' },
+            lineHeight: 1.6,
+            color: '#333',
             '&:hover': {
               color: '#1976d2', // Change color on hover
               transition: 'color 0.3s ease',

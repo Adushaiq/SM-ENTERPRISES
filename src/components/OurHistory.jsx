@@ -61,7 +61,7 @@ const OurHistory = () => {
         justifyContent: 'center',
         opacity: inView ? 1 : 0,
         transform: inView ? 'translateY(0)' : 'translateY(30px)', // Slide up when in view
-        transition: 'opacity 0.6s ease, transform 0.6s ease', // Smooth transition for fade-in and slide
+        transition: 'opacity 0.8s ease, transform 0.8s ease', // Smooth transition for fade-in and slide
       }}
     >
       {/* Image Section */}
@@ -73,7 +73,7 @@ const OurHistory = () => {
           mb: { xs: 3, md: 0 },
           opacity: inView ? 1 : 0,
           transform: inView ? 'scale(1)' : 'scale(0.9)', // Zoom-in effect
-          transition: 'opacity 0.6s ease, transform 0.6s ease',
+          transition: 'opacity 0.8s ease, transform 0.8s ease',
           '&:hover': {
             transform: 'scale(1.05)', // Zoom-in effect on hover
             transition: 'transform 0.3s ease', // Smooth transition
@@ -87,6 +87,7 @@ const OurHistory = () => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            borderRadius: '8px', // Add rounded corners to the image
           }}
         />
       </Box>
@@ -98,14 +99,13 @@ const OurHistory = () => {
           top: { md: '25%' },
           left: { md: '110px' },
           width: { xs: '90%', md: '500px' },
-          backgroundColor: '#FFFFFF',
-          padding: 3,
-          paddingTop: { xs: 0, md: 5 },
-          paddingBottom: { xs: 0, md: 5 },
+          background: 'linear-gradient(135deg, #ffffff 30%, rgba(0, 0, 0, 0.1) 90%)',
+          padding: 4,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           boxShadow: { xs: 0, md: 3 },
+          borderRadius: 3, // Rounded corners for text box
           textAlign: { xs: 'center', md: 'left' },
           opacity: inView ? 1 : 0,
           transform: inView
@@ -115,7 +115,7 @@ const OurHistory = () => {
             : isDesktop
             ? 'translateX(-30px)' // Start off screen to the left on desktop
             : 'translateY(30px)', // Start from below on mobile
-          transition: 'opacity 0.6s ease, transform 0.6s ease',
+          transition: 'opacity 0.8s ease, transform 0.8s ease',
           '&:hover': {
             transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
             transition: 'transform 0.3s ease',
@@ -129,6 +129,7 @@ const OurHistory = () => {
             fontWeight: 'bold',
             mb: 2,
             fontSize: { xs: '1.5rem', md: '2.5rem' },
+            lineHeight: 1.4, // Improved line height
             '&:hover': {
               color: '#1976d2', // Change color on hover
               transition: 'color 0.3s ease',
@@ -141,13 +142,15 @@ const OurHistory = () => {
           variant="body1"
           sx={{
             fontSize: { xs: '1rem', md: '1.2rem' },
+            lineHeight: 1.6, // Increased line height for readability
+            color: '#333',
             '&:hover': {
               color: '#1976d2', // Change color on hover
               transition: 'color 0.3s ease',
             },
           }}
         >
-          S M Enterprises, co-founders of KENT, has provided quality construction materials and hardware since 1998, serving businesses and institutions.
+          S M Enterprises, co-founders of KENT, has provided quality construction materials and hardware since 1998, serving businesses and institutions with reliable products and services.
         </Typography>
       </Box>
     </Container>

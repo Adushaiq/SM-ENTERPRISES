@@ -1,5 +1,5 @@
 import { Carousel } from 'react-responsive-carousel';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the carousel CSS
 
@@ -9,54 +9,90 @@ const BannerCarousel = ({ bannerImages }) => {
       showThumbs={false}
       autoPlay
       infiniteLoop
-      interval={2000}
+      interval={3000}
       showStatus={false}
       swipeable
       emulateTouch
       stopOnHover
+      dynamicHeight={false} // Keep consistent height for carousel items
+      transitionTime={1000} // Smooth transition between images
     >
       {bannerImages.map((banner, index) => (
-        <div key={index} style={{ position: 'relative' }}>
-          <motion.img
-            src={banner.src}
-            alt={banner.alt}
-            style={{
-              width: '100%',
-              maxHeight: '500px',
-              objectFit: 'cover',
-            }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }} // Smooth fade-in and scale effect
-          />
+        <div key={index} style={{ position: 'relative', overflow: 'hidden' }}>
           <motion.div
-            initial={{ opacity: 0, y: 50 }} // Start with text hidden and slightly below
-            animate={{ opacity: 1, y: 0 }} // Fade and move the text into place
-            transition={{ duration: 1.5, delay: 0.5, ease: 'easeInOut' }} // Timing for the text to appear after the image
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <img
+              src={banner.src}
+              alt={banner.alt}
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'cover',
+                transition: 'transform 1s ease-out',
+                filter: 'brightness(0.7)', // Dim the image for better text visibility
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'} // Zoom on hover
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            />
+          </motion.div>
+
+          {/* Gradient Overlay */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0))',
+              zIndex: 1,
+            }}
+          ></div>
+
+          {/* Text Overlay with Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 0.5, ease: 'easeInOut' }}
+            style={{
+              position: 'absolute',
+              top: '70%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 2,
+              textAlign: 'center',
+            }}
           >
             <Typography
-              variant="h5"
+              variant="h4"
               sx={{
-                position: 'absolute',
-                top: '80%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                color: '#fff',
-                px: 2,
-                py: 1,
-                borderRadius: 2,
+                color: 'white',
                 fontWeight: 'bold',
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', // Subtle shadow for readability
-                opacity: 0, // Initially hidden
-                transition: 'opacity 0.5s ease-in-out', // Smooth fade-in transition
-                '&:hover': {
-                  opacity: 1, // Show caption on hover
-                },
+                fontFamily: 'Playfair Display, serif',
+                letterSpacing: '1px',
+                textShadow: '2px 2px 6px rgba(0, 0, 0, 0.7)',
+                transition: 'transform 0.5s ease',
               }}
             >
               {banner.caption}
             </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                marginTop: 2,
+                backgroundColor: '#f76c6c',
+                '&:hover': { backgroundColor: '#d75858' },
+                padding: '8px 16px',
+                fontWeight: 'bold',
+                borderRadius: 5,
+              }}
+              onClick={() => alert('Button clicked')}
+            >
+              Explore Now
+            </Button>
           </motion.div>
         </div>
       ))}
@@ -65,3 +101,4 @@ const BannerCarousel = ({ bannerImages }) => {
 };
 
 export default BannerCarousel;
+

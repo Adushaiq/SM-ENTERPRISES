@@ -14,7 +14,7 @@ const OurCustomers = () => {
     <Box
       sx={{
         width: "100%",
-        mt: 4,
+        mt: 6,
         overflow: "hidden",
         position: "relative",
       }}
