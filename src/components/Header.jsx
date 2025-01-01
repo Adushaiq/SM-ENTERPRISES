@@ -76,7 +76,7 @@ function Header({ scrollToContact }) {
                     fontWeight: "normal",
                     textTransform: "capitalize",
                   }}
-                  onClick={page === "Contact Us" ? undefined : handleToggleMenu}
+                  // onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                   component={Link}
                   to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                 >
@@ -135,7 +135,7 @@ function Header({ scrollToContact }) {
                     {pages.map((page) => (
                       <Button
                         key={page}
-                        onClick={page === "Contact Us" ? undefined : handleToggleMenu}
+                        // onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                         component={Link}
                         to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                         sx={{

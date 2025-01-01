@@ -9,7 +9,7 @@ const Footer = () => {
     <Box
       sx={{
         backgroundColor: "#F7F7F7", // Retaining original background color
-        py: 2, // Increased padding for better spacing
+        py: 4, // Increased padding for better spacing
         mt: 5,
         boxShadow: "0px -2px 8px rgba(0, 0, 0, 0.1)",
       }}
@@ -21,7 +21,7 @@ const Footer = () => {
           sx={{
             flexDirection: { xs: "column", md: "row" }, // Stack vertically for mobile
             justifyContent: "space-between", // Space out the sections
-            alignItems: "center", // Center content in mobile view
+            alignItems: {xs: "center", md: "start"}, // Center content in mobile view
           }}
         >
           {/* Logo and Social Icons Section */}
@@ -139,6 +139,7 @@ const Footer = () => {
             sx={{
               textAlign: { xs: "center", md: "left" },
               mb: { xs: 4, md: 0 }, // Added bottom margin for consistency
+              paddingTop: 0
             }}
           >
             <Typography

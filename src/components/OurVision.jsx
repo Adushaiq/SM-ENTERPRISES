@@ -105,6 +105,7 @@ const OurVision = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           boxShadow: { xs: 0, md: 3 },
+          borderRadius: 3,
           textAlign: { xs: 'center', md: 'left' },
           opacity: inView ? 1 : 0,
           transform: inView
@@ -112,13 +113,14 @@ const OurVision = () => {
               ? 'translateX(-10px)' // Slide from left to right on desktop
               : 'translateY(0)' // Fade-in on mobile
             : isDesktop
-            ? 'translateX(0px)' // Start off screen to the left on desktop
+            ? 'translateX(-30px)' // Start off screen to the left on desktop
             : 'translateY(30px)', // Start from below on mobile
           transition: 'opacity 0.6s ease, transform 0.6s ease',
           '&:hover': {
-            transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
+            transform: isDesktop ? 'translateX(15px)' : 'translateY(-5px)', // Slight shift on hover
             transition: 'transform 0.3s ease',
-            boxShadow: 6, // Add shadow on hover
+            boxShadow: 6, // Add shadow on hover,
+            background: "#FFFFFF"
           },
         }}
       >

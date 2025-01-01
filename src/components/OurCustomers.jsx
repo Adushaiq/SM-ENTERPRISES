@@ -30,7 +30,7 @@ const OurCustomers = () => {
         }}
         sx={{
           display: "flex",
-          gap: 1,
+          gap: 5,
           width: "60%", // To ensure seamless scrolling
         }}
       >

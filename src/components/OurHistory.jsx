@@ -117,9 +117,10 @@ const OurHistory = () => {
             : 'translateY(30px)', // Start from below on mobile
           transition: 'opacity 0.8s ease, transform 0.8s ease',
           '&:hover': {
+            background: "#FFFFFF",
             transform: isDesktop ? 'translateX(-15px)' : 'translateY(-5px)', // Slight shift on hover
             transition: 'transform 0.3s ease',
-            boxShadow: 6, // Add shadow on hover
+            boxShadow: 6,
           },
         }}
       >

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Grid, Box, Link } from '@mui/material';
+import { TextField, Checkbox, Button, Typography, Grid, Box, Snackbar , Alert, Link} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -10,19 +10,70 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import LeafletMap from '../components/OpenLayersMap';
 import 'leaflet/dist/leaflet.css';
 
-const Form = ({ contactRef }) => {
+const Form = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [newsletter, setNewsletter] = useState(false);
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success', // 'success' | 'error'
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({ name, email, message });
+    const handleSnackbarClose = () => {
+        setSnackbar((prev) => ({ ...prev, open: false }));
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // Validate form fields
+        if (!name || !email || !message) {
+            setSnackbar({
+                open: true,
+                message: 'All fields are required!',
+                severity: 'error',
+            });
+            return;
+        }
+        try {
+            // Send API request
+            const response = await fetch("http://localhost:4000/api/v1/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, message }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setSnackbar({
+                    open: true,
+                    message: 'Email sent successfully!',
+                    severity: 'success',
+                });
+                setName('');
+                setEmail('');
+                setMessage('');
+                setNewsletter(false);
+            } else {
+                setSnackbar({
+                    open: true,
+                    message: `Error: ${data.message}`,
+                    severity: 'error',
+                });
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+            setSnackbar({
+                open: true,
+                message: 'Failed to send email!',
+                severity: 'error',
+            });
+        }
+    };
     return (
         <Box
-            ref={contactRef}
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -44,13 +95,17 @@ const Form = ({ contactRef }) => {
                     item
                     xs={12}
                     md={6}
-                    sx={{ display: 'flex', flexDirection: 'column', padding: { xs: '10px', md: '20px' } }}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        padding: { xs: '10px', md: '20px' },
+                    }}
                 >
                     <Box
                         component="form"
                         onSubmit={handleSubmit}
                         sx={{
-                            padding: '40px',
+                            padding: '30px',
                             backgroundColor: '#303030',
                             borderRadius: '10px',
                             display: 'flex',
@@ -59,7 +114,14 @@ const Form = ({ contactRef }) => {
                             height: '100%',
                         }}
                     >
-                        <Typography variant="h5" sx={{ marginBottom: '16px', color: '#fff', fontWeight: "Bold", fontSize: { xs: '1.5rem', md: '2rem' } }}>
+                        <Typography
+                            variant="h5"
+                            sx={{
+                                marginBottom: '16px',
+                                color: '#fff',
+                                fontSize: { xs: '1.5rem', md: '2rem' },
+                            }}
+                        >
                             Get in Touch
                         </Typography>
                         <TextField
@@ -113,6 +175,15 @@ const Form = ({ contactRef }) => {
                                 '& .MuiInput-underline:after': { borderBottomColor: '#007bff' },
                             }}
                         />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: '10px',
+                            }}
+                        >
+                           
+                        </Box>
                         <Button
                             type="submit"
                             variant="contained"
@@ -129,6 +200,21 @@ const Form = ({ contactRef }) => {
                             SUBMIT
                         </Button>
                     </Box>
+                    {/* Snackbar for success or error messages */}
+                    <Snackbar
+                        open={snackbar.open}
+                        autoHideDuration={4000}
+                        onClose={handleSnackbarClose}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
+                        <Alert
+                            onClose={handleSnackbarClose}
+                            severity={snackbar.severity}
+                            sx={{ width: '100%' }}
+                        >
+                            {snackbar.message}
+                        </Alert>
+                    </Snackbar>
                 </Grid>
 
                 {/* Contact Information Section */}
@@ -193,7 +279,7 @@ const Form = ({ contactRef }) => {
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                marginBottom: '12px',
+                                marginBottom: '20px',
                                 fontSize: '1rem',
                                 color: '#555',
                                 textAlign: 'left',

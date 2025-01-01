@@ -36,34 +36,19 @@ const Hero = () => {
         flexGrow: 1,
         backgroundColor: '#ffffff',
         height: 'auto',
-        padding: 4,
+        paddingLeft: 4,
         paddingTop: { xs: 4, md: 0 },
         paddingRight: { xs: 4, md: 0 },
-        position: 'relative',  // To add overlay effect later
+        marginBottom: { xs: 4, md: 8 }
       }}
     >
-      {/* Background Gradient Overlay */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0, 0, 0, 0.4)', // Dark overlay for contrast
-          zIndex: 1,
-        }}
-      ></Box>
-
       <Grid
         container
-        spacing={2}
+        spacing={0}
         sx={{
           flexDirection: { xs: 'column', md: 'row' },
-          alignItems: 'center',
+          alignItems: 'start',
           justifyContent: 'center',
-          position: 'relative', // Make sure content is above the overlay
-          zIndex: 2,
         }}
       >
         {/* Left Side (Text Content) */}
@@ -77,9 +62,10 @@ const Hero = () => {
             justifyContent: 'center',
             alignItems: { xs: 'center', md: 'flex-start' },
             textAlign: { xs: 'center', md: 'left' },
-            padding: 4,
+            paddingLeft: { xs: 0, md: 4 },
             paddingRight: { xs: 0, md: 4 },
-            zIndex: 2,
+            paddingTop: { xs: 0, md: 12 },
+            paddingBottom: {xs: 6, md: 0}
           }}
         >
           <motion.div variants={textVariant} initial="hidden" animate="visible">
@@ -89,11 +75,9 @@ const Hero = () => {
                 fontWeight: 'bold',
                 mb: 2,
                 fontSize: { xs: '2rem', md: '4rem' },
-                color: '#fff', // White text to contrast with the dark background
-                textShadow: '2px 2px 5px rgba(0, 0, 0, 0.6)', // Text shadow for better readability
               }}
             >
-              Building the Future with Quality & Innovation Since 1998
+              Building the <span className="satisfy-regular" style={{ color: '#3342AC' }}>Future</span> with Quality & Innovation Since 1998
             </Typography>
           </motion.div>
 
@@ -103,8 +87,6 @@ const Hero = () => {
               sx={{
                 mb: 3,
                 fontSize: { xs: '1rem', md: '1.25rem' },
-                color: '#fff', // White text
-                textShadow: '1px 1px 5px rgba(0, 0, 0, 0.6)', // Added text shadow for readability
               }}
             >
               Premium hardware and construction solutions built for durability and innovation.
@@ -128,10 +110,11 @@ const Hero = () => {
                 width: '200px',
                 height: '60px',
                 '&:hover': {
-                  backgroundColor: '#2A3891',
+                  backgroundColor: '#ffffff',
+                  color: "#3342AC",
+                  border: 2
                 },
                 borderRadius: '10px',
-                zIndex: 2,
               }}
             >
               CALL FOR INQUIRY
@@ -160,16 +143,15 @@ const Hero = () => {
                   sx={{
                     fontWeight: 'normal',
                     fontSize: { xs: '2rem', md: '3rem' },
-                    color: '#fff',
                   }}
                 >
                   500+
                 </Typography>
                 <Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' }, color: '#fff' }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     PRODUCTS
                   </Typography>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' }, color: '#fff' }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     DELIVERED
                   </Typography>
                 </Box>
@@ -187,16 +169,15 @@ const Hero = () => {
                   sx={{
                     fontWeight: 'normal',
                     fontSize: { xs: '2rem', md: '3rem' },
-                    color: '#fff',
                   }}
                 >
                   700+
                 </Typography>
                 <Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' }, color: '#fff' }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     TRUSTED
                   </Typography>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' }, color: '#fff' }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'light', fontSize: { xs: '0.75rem', md: '1rem' } }}>
                     CLIENTS
                   </Typography>
                 </Box>
@@ -215,7 +196,6 @@ const Hero = () => {
             justifyContent: 'center',
             alignItems: 'center',
             overflow: 'hidden',
-            zIndex: 2,
           }}
         >
           <motion.img
@@ -228,7 +208,6 @@ const Hero = () => {
               width: '100%',
               height: 'auto',
               objectFit: 'cover',
-              borderRadius: '15px', // Smooth the edges of the image
             }}
           />
         </Grid>
