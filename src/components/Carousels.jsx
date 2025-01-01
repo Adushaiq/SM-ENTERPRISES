@@ -40,20 +40,20 @@ const Carousels = () => {
             whileHover={{
               scale: 1.1,
               opacity: 0.9,
-              rotate: 5, // Added slight rotation effect on hover
-              transition: { duration: 0.4 },
+              transition: { duration: 0.2 },
             }}
             sx={{
               flex: isMobile ? "0 0 80%" : "0 0 22%", // Adjusted width for more balanced mobile/desktop layout
-              height: isMobile ? "220px" : "300px", // Adjusted height
+              height: isMobile ? "220px" : "350px", // Adjusted height
               backgroundImage: `url(${image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderRadius: 3, // Slightly rounded corners
-              boxShadow: 4, // Slight shadow effect
+              boxShadow: 6, // Increased shadow for better depth
               cursor: "pointer",
               position: "relative", // For overlay positioning
-              transition: "transform 0.3s ease, opacity 0.3s ease",
+              transition: "transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease",
+              overflow: "hidden",
             }}
           >
             {/* Gradient overlay for better text visibility */}
@@ -64,29 +64,39 @@ const Carousels = () => {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))",
+                background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8))",
                 borderRadius: 3,
+                zIndex: 1,
               }}
             />
             {/* Optional caption/text on hover */}
             <Box
               sx={{
                 position: "absolute",
-                bottom: "10%",
+                bottom: "20%",
                 left: "50%",
                 transform: "translateX(-50%)",
                 color: "white",
-                fontSize: "18px",
+                fontSize: isMobile ? "20px" : "24px", // Adjusted font size
                 fontWeight: "bold",
-                textShadow: "2px 2px 6px rgba(0, 0, 0, 0.7)",
+                textShadow: "2px 2px 6px rgba(0, 0, 0, 0.8)",
                 opacity: 0,
                 transition: "opacity 0.4s ease",
+                zIndex: 2,
+                textAlign: "center",
+                padding: "0 20px",
                 "&:hover": {
                   opacity: 1, // Show caption on hover
                 },
               }}
             >
-              Image Caption
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+              >
+                Image Caption
+              </motion.div>
             </Box>
           </Box>
         ))}

@@ -15,14 +15,14 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 
-const ProductGrid = ({ products }) => {
+const SteeleraProduct = ({ steelera }) => {
   const [visibleProducts, setVisibleProducts] = useState(6);
   const [selectedBrand, setSelectedBrand] = useState("");
 
-  const uniqueBrands = [...new Set(products.map((product) => product.brand))];
+  const uniqueBrands = [...new Set(steelera.map((product) => product.brand))];
   const filteredProducts = selectedBrand
-    ? products.filter((product) => product.brand === selectedBrand)
-    : products;
+    ? steelera.filter((product) => product.brand === selectedBrand)
+    : steelera;
 
   const loadMoreProducts = () => setVisibleProducts((prev) => prev + 6);
 
@@ -62,7 +62,7 @@ const ProductGrid = ({ products }) => {
             mb: { xs: 3, sm: 0 },
           }}
         >
-          Discover Flora
+          Discover Steelera
         </Typography>
 
         {/* Filter Dropdown */}
@@ -206,4 +206,4 @@ const ProductGrid = ({ products }) => {
   );
 };
 
-export default ProductGrid;
+export default SteeleraProduct;

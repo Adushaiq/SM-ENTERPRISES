@@ -21,8 +21,13 @@ import ProductGrid from "../components/ProductGrid";
 import BannerCarousel from "../components/BannerCarousel";
 import Footer from "../components/Footer";
 import { products } from "../jsons/products";
+import {steelera} from "../jsons/steelera"
 import { bannerImages } from "../jsons/bannerImages";
+import {kent} from "../jsons/kent"
 import Header from "../components/Header";
+import SteeleraProduct from "../components/SteeleraProduct";
+import KentProduct from "../components/KentProduct";
+import Rank1Product from "../components/Rank1Product";
 
 const globalStyles = {
   overflowX: "hidden", // Prevent horizontal scroll
@@ -41,11 +46,6 @@ const theme = createTheme({
   },
 });
 
-
-
-
-
-
 const CatalogPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -57,6 +57,9 @@ const CatalogPage = () => {
       <BannerCarousel bannerImages={bannerImages} />
       <Carousels/>
       <ProductGrid products={products} />
+      <SteeleraProduct steelera={steelera} />
+      <KentProduct kent={kent} />
+      <Rank1Product products={products} />
     </div>
     <Footer/>
   </ThemeProvider>

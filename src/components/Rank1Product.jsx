@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 
-const ProductGrid = ({ products }) => {
+const Rank1Product = ({ products }) => {
   const [visibleProducts, setVisibleProducts] = useState(6);
   const [selectedBrand, setSelectedBrand] = useState("");
 
@@ -62,7 +62,7 @@ const ProductGrid = ({ products }) => {
             mb: { xs: 3, sm: 0 },
           }}
         >
-          Discover Flora
+          Discover Rank 1
         </Typography>
 
         {/* Filter Dropdown */}
@@ -206,4 +206,4 @@ const ProductGrid = ({ products }) => {
   );
 };
 
-export default ProductGrid;
+export default Rank1Product;
