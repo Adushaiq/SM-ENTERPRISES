@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
-import WaterProofing from "../assets/Waterproofing.png"
-import TileAdhesive from "../assets/Tileadhesive.png"
-import AntiRust from "../assets/Antirust.png"
-import Kitchen from "../assets/Kitchen.png"
+import WaterProofing from "../assets/Waterproofing.png";
+import TileAdhesive from "../assets/Tileadhesive.png";
+import AntiRust from "../assets/Antirust.png";
+import Kitchen from "../assets/Kitchen.png";
 
 const featuredProducts = [
   {
@@ -27,8 +27,6 @@ const featuredProducts = [
     image: Kitchen,
   },
 ];
-
-
 
 const FeaturedProducts = () => {
   const [inView, setInView] = useState(false);
@@ -63,27 +61,26 @@ const FeaturedProducts = () => {
   return (
     <Box id="featured-products-wrapper" sx={{ py: 6 }}>
       <Typography
-          variant="h4"
-          align="center"
-          sx={{ fontWeight: "bold", mb: 2, pt: {xs: 2, md:6} }}
-        >
-          Featured Products
-        </Typography>
-        <Typography variant="subtitle1" align="center" sx={{ mb: 4, px: 4 }}>
-          Explore our top-quality, best-selling products for every construction
-          need.
-        </Typography>
+        variant="h4"
+        align="center"
+        sx={{ fontWeight: "bold", mb: 2, pt: { xs: 2, md: 6 } }}
+      >
+        Featured Products
+      </Typography>
+      <Typography variant="subtitle1" align="center" sx={{ mb: 4, px: 4 }}>
+        Explore our top-quality, best-selling products for every construction
+        need.
+      </Typography>
       {/* Desktop View */}
       <Box
         id="featured-products-section"
         sx={{
-          display: { xs: "none", md: "block" }, // Hidden on mobile
+          display: { xs: "none", md: "block" },
           opacity: hasBeenInView ? 1 : 0,
           transform: hasBeenInView ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        
         <Grid container spacing={2} justifyContent="center" maxWidth="lg" mx="auto">
           {/* First Column */}
           <Grid item xs={12} md={5}>
@@ -94,10 +91,10 @@ const FeaturedProducts = () => {
                 overflow: "visible",
                 borderRadius: 3,
                 boxShadow: 0,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transition added for scaling and shadow
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 "&:hover": {
-                  transform: "scale(1.05)", // Scaling effect on hover
-                  boxShadow: 3, // Box shadow on hover
+                  transform: "scale(1.05)",
+                  boxShadow: 3,
                 },
               }}
             >
@@ -108,6 +105,7 @@ const FeaturedProducts = () => {
                   height: "100%",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  borderRadius: "8px", // Added borderRadius for rounded borders
                 }}
               />
               <Box
@@ -137,10 +135,10 @@ const FeaturedProducts = () => {
                 overflow: "visible",
                 borderRadius: 3,
                 boxShadow: 0,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transition added for scaling and shadow
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 "&:hover": {
-                  transform: "scale(1.05)", // Scaling effect on hover
-                  boxShadow: 3, // Box shadow on hover
+                  transform: "scale(1.05)",
+                  boxShadow: 3,
                 },
               }}
             >
@@ -151,6 +149,7 @@ const FeaturedProducts = () => {
                   height: "100%",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  borderRadius: "8px", // Added borderRadius for rounded borders
                 }}
               />
               <Box
@@ -182,10 +181,10 @@ const FeaturedProducts = () => {
                     borderRadius: 3,
                     height: 300,
                     boxShadow: 0,
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transition added for scaling and shadow
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     "&:hover": {
-                      transform: "scale(1.05)", // Scaling effect on hover
-                      boxShadow: 3, // Box shadow on hover
+                      transform: "scale(1.05)",
+                      boxShadow: 3,
                     },
                   }}
                 >
@@ -196,6 +195,7 @@ const FeaturedProducts = () => {
                       height: "100%",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
+                      borderRadius: "8px", // Added borderRadius for rounded borders
                     }}
                   />
                   <Box
@@ -224,10 +224,10 @@ const FeaturedProducts = () => {
                     borderRadius: 3,
                     height: 300,
                     boxShadow: 0,
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transition added for scaling and shadow
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     "&:hover": {
-                      transform: "scale(1.05)", // Scaling effect on hover
-                      boxShadow: 3, // Box shadow on hover
+                      transform: "scale(1.05)",
+                      boxShadow: 3,
                     },
                   }}
                 >
@@ -238,6 +238,7 @@ const FeaturedProducts = () => {
                       height: "100%",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
+                      borderRadius: "8px", // Added borderRadius for rounded borders
                     }}
                   />
                   <Box
@@ -269,7 +270,7 @@ const FeaturedProducts = () => {
         maxWidth="lg"
         mx="auto"
         sx={{
-          display: { xs: "block", md: "none" }, // Hidden on desktop
+          display: { xs: "block", md: "none" },
           opacity: hasBeenInView ? 1 : 1,
           transform: hasBeenInView ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
@@ -298,6 +299,7 @@ const FeaturedProducts = () => {
                 height: "400px",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                borderRadius: "8px", // Added borderRadius for rounded borders
               }}
             />
             <Box

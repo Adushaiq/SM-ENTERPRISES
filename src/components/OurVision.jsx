@@ -88,6 +88,8 @@ const OurVision = () => {
             height: '100%',
             objectFit: 'cover',
             objectPosition: 'left', // Focus on the left side of the image for mobile
+            borderRadius: '8px', // Add rounded corners to the image
+
           }}
         />
       </Box>
