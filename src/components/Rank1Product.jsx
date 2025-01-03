@@ -15,14 +15,14 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 
-const Rank1Product = ({ products }) => {
+const Rank1Product = ({ R1 }) => {
   const [visibleProducts, setVisibleProducts] = useState(6);
   const [selectedBrand, setSelectedBrand] = useState("");
 
-  const uniqueBrands = [...new Set(products.map((product) => product.brand))];
+  const uniqueBrands = [...new Set(R1.map((product) => product.brand))];
   const filteredProducts = selectedBrand
-    ? products.filter((product) => product.brand === selectedBrand)
-    : products;
+    ? R1.filter((product) => product.brand === selectedBrand)
+    : R1;
 
   const loadMoreProducts = () => setVisibleProducts((prev) => prev + 6);
 

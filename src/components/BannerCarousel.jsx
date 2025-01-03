@@ -23,7 +23,8 @@ const BannerCarousel = ({ bannerImages }) => {
           style={{
             position: "relative",
             overflow: "hidden",
-            height: "100vh", // Fullscreen height for banners
+            height: "calc(100vh - 56px)", // Adjust height for mobile view
+            maxHeight: "100vh", // Ensure it doesn't exceed the viewport
             backgroundColor: "#000", // Fallback color for loading
           }}
         >

@@ -70,7 +70,7 @@ const Carousels = () => {
               }}
             />
             {/* Optional caption/text on hover */}
-            <Box
+            {/* <Box
               sx={{
                 position: "absolute",
                 bottom: "20%",
@@ -97,7 +97,7 @@ const Carousels = () => {
               >
                 Image Caption
               </motion.div>
-            </Box>
+            </Box> */}
           </Box>
         ))}
       </Box>
