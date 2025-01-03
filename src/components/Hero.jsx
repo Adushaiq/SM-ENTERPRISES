@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import HeroImage from '../assets/HeroImage.png'; // Assuming HeroImage is in the assets folder
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
   // Animation variants
   const textVariant = {
@@ -28,6 +28,13 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 1, ease: 'easeOut' } },
   };
+
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  const handleContactRoute = () => {
+    navigate("/contactus"); // Navigate to /contactus when the button is clicked
+  };
+
 
   return (
     <Container
@@ -116,6 +123,7 @@ const Hero = () => {
                 },
                 borderRadius: '10px',
               }}
+              onClick={handleContactRoute}
             >
               CALL FOR INQUIRY
             </Button>

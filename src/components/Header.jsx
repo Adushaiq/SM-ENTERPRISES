@@ -15,6 +15,8 @@ import CompanyLogo from "../assets/CompanyLogo.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { Slide } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const pages = ["Home", "Catalog", "Our Customers", "About Us", "Contact Us"];
 
@@ -33,8 +35,6 @@ function Header({ scrollToContact }) {
       sx={{
         backgroundColor: "white",
         color: "black",
-        paddingBottom: "20px",
-        paddingTop: "10px",
       }}
       elevation={0}
     >
@@ -76,7 +76,6 @@ function Header({ scrollToContact }) {
                     fontWeight: "normal",
                     textTransform: "capitalize",
                   }}
-                  // onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                   component={Link}
                   to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                 >
@@ -94,7 +93,8 @@ function Header({ scrollToContact }) {
               >
                 <MenuIcon />
               </IconButton>
-              {isMenuOpen && (
+
+              <Slide direction="right" in={isMenuOpen} mountOnEnter unmountOnExit>
                 <Box
                   sx={{
                     position: "fixed",
@@ -108,6 +108,8 @@ function Header({ scrollToContact }) {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     padding: "16px",
+                    opacity: isMenuOpen ? 1 : 0,
+                    transition: "opacity 0.3s ease-in-out",
                   }}
                 >
                   {/* Close Icon */}
@@ -129,28 +131,88 @@ function Header({ scrollToContact }) {
                       gap: 2,
                       marginTop: 2,
                       width: "100%",
-                      textAlign: "center"
+                      textAlign: "center",
                     }}
                   >
                     {pages.map((page) => (
                       <Button
                         key={page}
-                        // onClick={page === "Contact Us" ? undefined : handleToggleMenu}
+                        onClick={page === "Contact Us" ? undefined : handleToggleMenu}
                         component={Link}
                         to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
                         sx={{
                           color: "black",
                           textTransform: "capitalize",
                           fontWeight: "normal",
-                          textAlign: "centre",
+                          opacity: isMenuOpen ? 1 : 0,
+                          transition: "opacity 0.5s ease-in-out",
                         }}
                       >
-                        {page}
+                        <Typography
+                          sx={{
+                            fontWeight: "bold",
+                            transition: "transform 0.3s ease-in-out",
+                            transform: isMenuOpen ? "scale(1)" : "scale(0.9)",
+                          }}
+                        >
+                          {page}
+                        </Typography>
                       </Button>
                     ))}
                   </Box>
+
+                  {/* Social Icons for Mobile */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center", // Center align the icons
+                      gap: 2, // Add spacing between the icons
+                      width: "100%",
+                      paddingBottom: "16px", // Add some padding at the bottom
+                    }}
+                  >
+                    <IconButton
+                      component="a"
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      sx={{
+                        opacity: isMenuOpen ? 1 : 0,
+                        transition: "opacity 0.5s ease-in-out",
+                      }}
+                    >
+                      <FacebookIcon />
+                    </IconButton>
+                    <IconButton
+                      component="a"
+                      href="https://twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      sx={{
+                        opacity: isMenuOpen ? 1 : 0,
+                        transition: "opacity 0.5s ease-in-out",
+                      }}
+                    >
+                      <TwitterIcon />
+                    </IconButton>
+                    <IconButton
+                      component="a"
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      sx={{
+                        opacity: isMenuOpen ? 1 : 0,
+                        transition: "opacity 0.5s ease-in-out",
+                      }}
+                    >
+                      <InstagramIcon />
+                    </IconButton>
+                  </Box>
                 </Box>
-              )}
+              </Slide>
             </>
           )}
 
@@ -159,8 +221,6 @@ function Header({ scrollToContact }) {
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
                 gap: 2,
               }}
             >
@@ -193,118 +253,6 @@ function Header({ scrollToContact }) {
               </IconButton>
             </Box>
           )}
-
-          {/* Social Icons for Mobile */}
-          {isMenuOpen && (
-            <Box
-              sx={{
-                position: "fixed",
-                top: 0,
-                right: 0,
-                width: "70vw",
-                height: "100vh",
-                backgroundColor: "white",
-                zIndex: 1300,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between", // Ensure content and socials are spaced properly
-                alignItems: "flex-start",
-                padding: "16px",
-                paddingTop: "0px"
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                  marginTop: 2,
-                  width: "100%",
-                  textAlign: "center",
-                }}
-              >
-                {/* Close Icon */}
-                <IconButton
-                  size="large"
-                  edge="end"
-                  color="inherit"
-                  onClick={handleToggleMenu}
-                  sx={{ alignSelf: "flex-end" }}
-                >
-                  <CloseIcon />
-                </IconButton>
-
-                {/* Menu Items */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2,
-                    marginTop: 2,
-                    width: "100%",
-                    textAlign: "center",
-                  }}
-                >
-                  {pages.map((page) => (
-                    <Button
-                      key={page}
-                      onClick={page === "Contact Us" ? undefined : handleToggleMenu}
-                      component={Link}
-                      to={page === "Contact Us" ? "/contactus" : page !== "Catalog" ? `/${page.toLowerCase().replace(" ", "")}` : "/catalogue"}
-                      sx={{
-                        color: "black",
-                        textTransform: "capitalize",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      {page}
-                    </Button>
-                  ))}
-                </Box>
-
-              </Box>
-
-              {/* Social Icons */}
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center", // Center align the icons
-                  gap: 2, // Add spacing between the icons
-                  width: "100%",
-                  paddingBottom: "16px", // Add some padding at the bottom
-                }}
-              >
-                <IconButton
-                  component="a"
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="inherit"
-                >
-                  <FacebookIcon />
-                </IconButton>
-                <IconButton
-                  component="a"
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="inherit"
-                >
-                  <TwitterIcon />
-                </IconButton>
-                <IconButton
-                  component="a"
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="inherit"
-                >
-                  <InstagramIcon />
-                </IconButton>
-              </Box>
-            </Box>
-          )}
-
         </Toolbar>
       </Container>
     </AppBar>

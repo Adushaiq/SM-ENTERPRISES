@@ -64,35 +64,6 @@ const ProductGrid = ({ products }) => {
         >
           Discover Flora
         </Typography>
-
-        {/* Filter Dropdown */}
-        <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel id="brand-filter-label" shrink={selectedBrand !== ""}>
-            Filter by Brand
-          </InputLabel>
-          <Select
-            labelId="brand-filter-label"
-            value={selectedBrand}
-            onChange={(e) => setSelectedBrand(e.target.value)}
-            sx={{
-              backgroundColor: "white",
-              borderRadius: 2,
-              boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
-              "&:hover": {
-                boxShadow: "0 5px 10px rgba(0,0,0,0.2)",
-              },
-            }}
-          >
-            <MenuItem value="">
-              <em>All Brands</em>
-            </MenuItem>
-            {uniqueBrands.map((brand) => (
-              <MenuItem key={brand} value={brand}>
-                {brand}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
       </Box>
 
       {/* Product Grid */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, Container, Grid, Card, CardContent, CardMedia, Button } from "@mui/material";
 import { keyframes } from "@mui/system"; // For animations
 import Header from "../components/Header";
@@ -14,8 +14,13 @@ const fadeIn = keyframes`
 `;
 
 const AboutUsPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false); // State to trigger page load transition
 
   const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  useEffect(() => {
+    setIsLoaded(true); // Set to true after the component is mounted
+  }, []);
 
   const handleGetInTouchClick = () => {
     navigate("/contactus"); // Navigate to /contactus when the button is clicked
@@ -28,9 +33,16 @@ const AboutUsPage = () => {
 
       {/* Main Content Section */}
       <Container sx={{ paddingTop: "10px", paddingBottom: "60px" }}>
-
         {/* Award Section */}
-        <Box sx={{ marginBottom: "60px", animation: `${fadeIn} 1s ease-out` }}>
+        <Box
+          sx={{
+            marginBottom: "60px",
+            animation: isLoaded ? `${fadeIn} 1s ease-out` : "none", // Apply fade-in animation after loading
+            opacity: isLoaded ? 1 : 0, // Set opacity to 0 initially and 1 after page load
+            transform: isLoaded ? "translateY(0)" : "translateY(20px)", // Set translation effect
+            transition: "all 1s ease-out", // Smooth transition effect
+          }}
+        >
           <Typography variant="h5" sx={{ fontWeight: "bold", color: "#333", marginBottom: "20px", textAlign: "center" }}>
             Most Efficient Vendor Award
           </Typography>
@@ -57,7 +69,15 @@ const AboutUsPage = () => {
         </Box>
 
         {/* Vendor Image Section */}
-        <Box sx={{ marginBottom: "60px", animation: `${fadeIn} 1.2s ease-out` }}>
+        <Box
+          sx={{
+            marginBottom: "60px",
+            animation: isLoaded ? `${fadeIn} 1.2s ease-out` : "none", // Apply fade-in animation after loading
+            opacity: isLoaded ? 1 : 0, // Set opacity to 0 initially and 1 after page load
+            transform: isLoaded ? "translateY(0)" : "translateY(20px)", // Set translation effect
+            transition: "all 1.2s ease-out", // Smooth transition effect
+          }}
+        >
           <Typography variant="h5" sx={{ fontWeight: "bold", color: "#333", marginBottom: "20px", textAlign: "center" }}>
             Our Trusted Vendor Partner
           </Typography>
@@ -84,19 +104,36 @@ const AboutUsPage = () => {
         </Box>
 
         {/* Conclusion Section */}
-        <Box sx={{ textAlign: "center", marginTop: "40px", animation: `${fadeIn} 1.4s ease-out` }}>
+        <Box
+          sx={{
+            textAlign: "center",
+            marginTop: "40px",
+            animation: isLoaded ? `${fadeIn} 1.4s ease-out` : "none", // Apply fade-in animation after loading
+            opacity: isLoaded ? 1 : 0, // Set opacity to 0 initially and 1 after page load
+            transform: isLoaded ? "translateY(0)" : "translateY(20px)", // Set translation effect
+            transition: "all 1.4s ease-out", // Smooth transition effect
+          }}
+        >
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: "900px", margin: "0 auto" }}>
             With a focus on durability, reliability, and customer satisfaction, we are committed to providing innovative solutions that stand the test of time. Our products are designed to help you build a better future.
           </Typography>
         </Box>
 
         {/* Call to Action Button */}
-        <Box sx={{ textAlign: "center", marginTop: "40px", animation: `${fadeIn} 1.6s ease-out` }}>
-          <Button onClick={handleGetInTouchClick}  variant="contained" color="primary" sx={{ padding: "12px 30px", fontSize: "16px", fontWeight: "bold", borderRadius: "30px", "&:hover": { transform: "scale(1.05)" } }}>
+        <Box
+          sx={{
+            textAlign: "center",
+            marginTop: "40px",
+            animation: isLoaded ? `${fadeIn} 1.6s ease-out` : "none", // Apply fade-in animation after loading
+            opacity: isLoaded ? 1 : 0, // Set opacity to 0 initially and 1 after page load
+            transform: isLoaded ? "translateY(0)" : "translateY(20px)", // Set translation effect
+            transition: "all 1.6s ease-out", // Smooth transition effect
+          }}
+        >
+          <Button onClick={handleGetInTouchClick} variant="contained" color="primary" sx={{ padding: "12px 30px", fontSize: "16px", fontWeight: "bold", borderRadius: "30px", "&:hover": { transform: "scale(1.05)" } }}>
             Get in Touch
           </Button>
         </Box>
-
       </Container>
 
       {/* Footer */}

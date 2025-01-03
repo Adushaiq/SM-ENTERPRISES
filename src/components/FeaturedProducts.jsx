@@ -270,6 +270,7 @@ const FeaturedProducts = () => {
         maxWidth="lg"
         mx="auto"
         sx={{
+          padding:"15px",
           display: { xs: "block", md: "none" },
           opacity: hasBeenInView ? 1 : 1,
           transform: hasBeenInView ? "translateY(0)" : "translateY(30px)",
@@ -280,6 +281,7 @@ const FeaturedProducts = () => {
           <Card
             key={index}
             sx={{
+              
               position: "relative",
               marginBottom: 8,
               borderRadius: 3,

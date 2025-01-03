@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the carousel CSS
 
 const BannerCarousel = ({ bannerImages }) => {
+
+  const isMobile = window.innerWidth <= 768;
+
   return (
     <Carousel
       showThumbs={false}
@@ -23,7 +26,7 @@ const BannerCarousel = ({ bannerImages }) => {
           style={{
             position: "relative",
             overflow: "hidden",
-            height: "calc(100vh - 56px)", // Adjust height for mobile view
+            height: isMobile ? "60vh" : "calc(100vh - 56px)", // Mobile view: 60vh, Desktop view: 100vh minus 56px
             maxHeight: "100vh", // Ensure it doesn't exceed the viewport
             backgroundColor: "#000", // Fallback color for loading
           }}
